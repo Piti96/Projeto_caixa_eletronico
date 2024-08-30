@@ -7,7 +7,7 @@ __________MENU________
 _______________________
 
 """
-saldo = 100
+saldo = 0
 limite = 500
 extrato = " "
 numero_saque = 0
@@ -23,8 +23,8 @@ while True:
        valor = float(input("Digite o valor do deposito: "))
        if valor > 0:
            saldo += valor
-           extrato += f"Deposito: R$ {valor}\n"
-           
+           extrato += f"Deposito: R$ {valor:.2f}\n"
+           print (f"Você realizou um depósito de R$  {valor:.2f}")
        else:
            print("A operação falhou! Tente novamente.")
            
@@ -34,29 +34,23 @@ while True:
            valor = float(input(" Informe i valor que deseja sacar: "))
            
            saldo_insuficiente = valor > saldo
-           
            limite_insuficiente = valor > limite
-           
            excedeu_saques = numero_saque >= LIMITE_SAQUES
            
-           if valor > 0:
+           if valor > 0 and not saldo_insuficiente and not limite_insuficiente and not excedeu_saques:
               saldo -= valor
-              extrato += f" Saque: R$ {valor}\n"
+              extrato += f" Saque: R$ {valor:.2f}\n"
               numero_saque += 1
-            
-           
-           
+              print (f"Você realizou um saque de R$ {valor:.2f}")
+ 
            elif saldo_insuficiente:
                print ("Saldo insuficiente para realizar a operação!")
            
-           elif limite_insufuciente:
+           elif limite_insuficiente:
                   print ("Você não possui limite disponivel para realizar essa operação!")
             
            elif excedeu_saques:
                   print ("A operação não pode ser realizada, pois você atingiu o limite diário de saques!")
-               
-             
-           
            else:
                print("A operacao falhou")
                
